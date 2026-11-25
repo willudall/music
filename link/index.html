@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Will Udall — Links</title>
+  <style>
+    :root {
+      --color-bg: #ffffff;
+      --color-text: #111111;
+      --color-muted: #333333;
+      --color-badge-bg: #000000;
+      --color-badge-fg: #ffffff;
+      --color-bandcamp: #629aa9;
+      --color-spotify: #1db954;
+      --color-youtube: #ff0000;
+      --color-focus: #00796b;
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --font-mono: ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-block-size: 100dvb;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font-sans);
+      line-height: 1.4;
+      padding-block: clamp(2.5rem, 6vh, 4rem) 2rem;
+      padding-inline: 1.5rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page-shell {
+      inline-size: 100%;
+      max-inline-size: 420px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-block: auto;
+    }
+
+    .artist-logo {
+      margin: 0 0 1.5rem;
+      font-size: 1.85rem;
+      font-weight: 900;
+      line-height: 0.82;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+      color: var(--color-text);
+    }
+
+    .artist-logo span {
+      display: block;
+    }
+
+    .featured-link {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.9rem;
+      color: var(--color-text);
+      text-decoration: none;
+      margin-block-end: 1.75rem;
+      border-radius: 4px;
+      padding: 0.25rem;
+    }
+
+    .featured-thumb {
+      display: block;
+      inline-size: 152px;
+      block-size: auto;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      background-color: #111111;
+      border-radius: 2px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .featured-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.03em;
+      color: var(--color-muted);
+    }
+
+    .featured-link:hover .featured-thumb,
+    .featured-link:focus-visible .featured-thumb {
+      transform: translateY(-2px);
+      opacity: 0.92;
+    }
+
+    .featured-link:hover .featured-label {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .platform-nav {
+      inline-size: 100%;
+    }
+
+    .platform-list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.95rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .badge-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      min-inline-size: 146px;
+      min-block-size: 46px;
+      padding: 0.45rem 0.95rem;
+      background-color: var(--color-badge-bg);
+      color: var(--color-badge-fg);
+      border-radius: 8px;
+      text-decoration: none;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .badge-link:hover,
+    .badge-link:focus-visible {
+      transform: translateY(-2px);
+      opacity: 0.88;
+    }
+
+    .badge-link__icon {
+      display: block;
+      inline-size: 24px;
+      block-size: 24px;
+      flex-shrink: 0;
+    }
+
+    .badge-link__text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      line-height: 1.05;
+      text-align: start;
+    }
+
+    .badge-link__eyebrow {
+      font-size: 0.56rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      opacity: 0.92;
+    }
+
+    .badge-link__brand {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .badge-link__brand--caps {
+      font-size: 0.98rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .bandcamp-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.3rem;
+      min-block-size: 40px;
+      padding: 0.35rem 0.75rem;
+      margin-block-end: 0.45rem;
+      color: #444444;
+      text-decoration: none;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      border-radius: 6px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .bandcamp-link:hover,
+    .bandcamp-link:focus-visible {
+      transform: translateY(-2px);
+      opacity: 0.82;
+    }
+
+    .bandcamp-link svg {
+      display: block;
+      inline-size: 20px;
+      block-size: 14px;
+      color: var(--color-bandcamp);
+    }
+
+    .social-nav {
+      margin-block-start: clamp(3rem, 7vh, 4.5rem);
+    }
+
+    .social-list {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-inline-size: 36px;
+      min-block-size: 36px;
+      color: var(--color-text);
+      border-radius: 50%;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .social-link:hover,
+    .social-link:focus-visible {
+      color: var(--color-focus);
+      transform: translateY(-2px);
+    }
+
+    .social-link svg {
+      display: block;
+      inline-size: 20px;
+      block-size: 20px;
+    }
+
+    .site-footer {
+      margin-block-start: 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      color: var(--color-muted);
+    }
+
+    .status-note {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--color-muted);
+      margin: 1rem 0;
+    }
+
+    :where(a:any-link):focus-visible {
+      outline: 3px solid var(--color-focus);
+      outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .featured-thumb,
+      .badge-link,
+      .bandcamp-link,
+      .social-link {
+        transition: none;
+      }
+
+      .featured-link:hover .featured-thumb,
+      .featured-link:focus-visible .featured-thumb,
+      .badge-link:hover,
+      .badge-link:focus-visible,
+      .bandcamp-link:hover,
+      .bandcamp-link:focus-visible,
+      .social-link:hover,
+      .social-link:focus-visible {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-shell">
+    <h1 class="artist-logo" id="artist-logo">
+      <span>WILL</span>
+      <span>UDALL</span>
+    </h1>
+
+    <div id="featured-slot"></div>
+
+    <nav class="platform-nav" aria-label="Music platforms">
+      <ul class="platform-list" id="platform-list" role="list"></ul>
+    </nav>
+
+    <nav class="social-nav" aria-label="Social media">
+      <ul class="social-list" id="social-list" role="list"></ul>
+    </nav>
+  </main>
+
+  <footer class="site-footer" id="site-footer">
+    <p>&copy; 2026</p>
+  </footer>
+
+  <script>
+    const SAFE_PROTOCOLS = new Set(['https:', 'http:', 'mailto:']);
+
+    function sanitizeUrl(rawUrl) {
+      if (typeof rawUrl !== 'string' || !rawUrl.trim()) return null;
+      try {
+        const parsed = new URL(rawUrl, window.location.href);
+        return SAFE_PROTOCOLS.has(parsed.protocol) ? parsed.href : null;
+      } catch {
+        return null;
+      }
+    }
+
+    function extractYouTubeId(rawUrl) {
+      try {
+        const parsed = new URL(rawUrl);
+        if (parsed.hostname.includes('youtu.be')) {
+          return parsed.pathname.slice(1).split('/')[0] || null;
+        }
+        if (parsed.hostname.includes('youtube.com')) {
+          return parsed.searchParams.get('v');
+        }
+      } catch {
+        return null;
+      }
+      return null;
+    }
+
+    function createSvg(viewBox, paths, attrs = {}) {
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('viewBox', viewBox);
+      svg.setAttribute('aria-hidden', 'true');
+      for (const [key, val] of Object.entries(attrs)) {
+        svg.setAttribute(key, val);
+      }
+      for (const item of paths) {
+        const el = document.createElementNS('http://www.w3.org/2000/svg', item.tag);
+        for (const [k, v] of Object.entries(item.attrs)) {
+          el.setAttribute(k, v);
+        }
+        svg.appendChild(el);
+      }
+      return svg;
+    }
+
+    function createPlatformElement(item) {
+      const safeUrl = sanitizeUrl(item.url);
+      if (!safeUrl || item.enabled === false) return null;
+
+      const li = document.createElement('li');
+      const platform = String(item.platform || '').toLowerCase();
+
+      if (platform === 'bandcamp') {
+        const a = document.createElement('a');
+        a.className = 'bandcamp-link';
+        a.href = safeUrl;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        a.setAttribute('aria-label', 'Listen on Bandcamp');
+        a.appendChild(
+          createSvg('0 0 24 16', [
+            { tag: 'polygon', attrs: { points: '0,15 6.5,1 24,1 17.5,15', fill: 'currentColor' } }
+          ])
+        );
+        const label = document.createElement('span');
+        label.textContent = 'bandcamp';
+        a.appendChild(label);
+        li.appendChild(a);
+        return li;
+      }
+
+      const a = document.createElement('a');
+      a.className = 'badge-link';
+      a.href = safeUrl;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+
+      if (platform === 'spotify') {
+        a.setAttribute('aria-label', 'Listen on Spotify');
+        a.appendChild(
+          createSvg('0 0 24 24', [
+            { tag: 'circle', attrs: { cx: '12', cy: '12', r: '10.5', fill: '#1db954' } },
+            { tag: 'path', attrs: { d: 'M7.2 9.8c3.3-1 7-.8 9.8.6', fill: 'none', stroke: '#000', 'stroke-width': '1.8', 'stroke-linecap': 'round' } },
+            { tag: 'path', attrs: { d: 'M8 12.6c2.7-.8 5.7-.6 8 .5', fill: 'none', stroke: '#000', 'stroke-width': '1.6', 'stroke-linecap': 'round' } },
+            { tag: 'path', attrs: { d: 'M8.8 15.2c2.1-.6 4.4-.4 6.2.4', fill: 'none', stroke: '#000', 'stroke-width': '1.4', 'stroke-linecap': 'round' } }
+          ], { class: 'badge-link__icon' })
+        );
+        const text = document.createElement('span');
+        text.className = 'badge-link__text';
+        const eyebrow = document.createElement('span');
+        eyebrow.className = 'badge-link__eyebrow';
+        eyebrow.textContent = 'Listen on';
+        const brand = document.createElement('span');
+        brand.className = 'badge-link__brand';
+        brand.textContent = 'Spotify';
+        text.append(eyebrow, brand);
+        a.appendChild(text);
+        li.appendChild(a);
+        return li;
+      }
+
+      if (platform === 'apple-music') {
+        a.setAttribute('aria-label', 'Listen on Apple Music');
+        a.appendChild(
+          createSvg('0 0 24 24', [
+            { tag: 'path', attrs: { d: 'M16.4 12.7c0-2.1 1.7-3.1 1.8-3.2-1-1.4-2.5-1.6-3-1.6-1.3-.1-2.5.8-3.1.8-.7 0-1.7-.8-2.8-.7-1.4 0-2.7.8-3.4 2.1-1.5 2.6-.4 6.4 1 8.5.7 1 1.5 2.2 2.6 2.1 1 0 1.4-.7 2.7-.7 1.2 0 1.6.7 2.7.7 1.1 0 1.8-1 2.5-2 .8-1.1 1.1-2.2 1.1-2.3-.1 0-2.1-.8-2.1-3.7Z', fill: 'currentColor' } },
+            { tag: 'path', attrs: { d: 'M14.3 6.5c.6-.7 1-1.7.9-2.7-.9 0-1.9.6-2.5 1.3-.5.6-1 1.6-.9 2.6 1 .1 2-.5 2.5-1.2Z', fill: 'currentColor' } }
+          ], { class: 'badge-link__icon' })
+        );
+        const text = document.createElement('span');
+        text.className = 'badge-link__text';
+        const eyebrow = document.createElement('span');
+        eyebrow.className = 'badge-link__eyebrow';
+        eyebrow.textContent = 'Listen on';
+        const brand = document.createElement('span');
+        brand.className = 'badge-link__brand badge-link__brand--caps';
+        brand.textContent = 'MUSIC';
+        text.append(eyebrow, brand);
+        a.appendChild(text);
+        li.appendChild(a);
+        return li;
+      }
+
+      if (platform === 'youtube') {
+        a.setAttribute('aria-label', 'Watch and listen on YouTube');
+        a.appendChild(
+          createSvg('0 0 24 24', [
+            { tag: 'rect', attrs: { x: '1.5', y: '5', width: '21', height: '14', rx: '4', fill: '#ff0000' } },
+            { tag: 'polygon', attrs: { points: '10,8.5 16,12 10,15.5', fill: '#ffffff' } }
+          ], { class: 'badge-link__icon' })
+        );
+        const text = document.createElement('span');
+        text.className = 'badge-link__text';
+        const eyebrow = document.createElement('span');
+        eyebrow.className = 'badge-link__eyebrow';
+        eyebrow.textContent = 'Watch & Listen On';
+        const brand = document.createElement('span');
+        brand.className = 'badge-link__brand';
+        brand.textContent = 'YouTube';
+        text.append(eyebrow, brand);
+        a.appendChild(text);
+        li.appendChild(a);
+        return li;
+      }
+
+      // Generic fallback for any future custom link added to links.json
+      const labelText = item.label || item.platform || 'Link';
+      a.setAttribute('aria-label', labelText);
+      const text = document.createElement('span');
+      text.className = 'badge-link__brand';
+      text.textContent = labelText;
+      a.appendChild(text);
+      li.appendChild(a);
+      return li;
+    }
+
+    function createSocialElement(item) {
+      const safeUrl = sanitizeUrl(item.url);
+      if (!safeUrl || item.enabled === false) return null;
+
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.className = 'social-link';
+      a.href = safeUrl;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+
+      const platform = String(item.platform || '').toLowerCase();
+      if (platform === 'facebook') {
+        a.setAttribute('aria-label', 'Facebook');
+        a.appendChild(
+          createSvg('0 0 24 24', [
+            { tag: 'path', attrs: { d: 'M12 2.04c-5.5 0-10 4.49-10 10.02 0 5 3.66 9.15 8.44 9.9v-7H7.9v-2.9h2.54V9.85c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.23.19 2.23.19v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.9h-2.33v7a10 10 0 0 0 8.44-9.9c0-5.53-4.5-10.02-10-10.02Z', fill: 'currentColor' } }
+          ])
+        );
+      } else if (platform === 'instagram') {
+        a.setAttribute('aria-label', 'Instagram');
+        a.appendChild(
+          createSvg('0 0 24 24', [
+            { tag: 'rect', attrs: { x: '3', y: '3', width: '18', height: '18', rx: '5', fill: 'none', stroke: 'currentColor', 'stroke-width': '2' } },
+            { tag: 'circle', attrs: { cx: '12', cy: '12', r: '4', fill: 'none', stroke: 'currentColor', 'stroke-width': '2' } },
+            { tag: 'circle', attrs: { cx: '17.5', cy: '6.5', r: '1', fill: 'currentColor' } }
+          ])
+        );
+      } else if (platform === 'tiktok') {
+        a.setAttribute('aria-label', 'TikTok');
+        a.appendChild(
+          createSvg('0 0 24 24', [
+            { tag: 'path', attrs: { d: 'M16.6 5.82s.51.5 0 0A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z', fill: 'currentColor' } }
+          ])
+        );
+      } else {
+        return null;
+      }
+
+      li.appendChild(a);
+      return li;
+    }
+
+    function renderData(data) {
+      if (Array.isArray(data.artistName) && data.artistName.length > 0) {
+        const logo = document.getElementById('artist-logo');
+        logo.replaceChildren(
+          ...data.artistName.map((line) => {
+            const span = document.createElement('span');
+            span.textContent = String(line);
+            return span;
+          })
+        );
+      }
+
+      const featuredSlot = document.getElementById('featured-slot');
+      featuredSlot.replaceChildren();
+      if (data.featured && data.featured.enabled !== false) {
+        const safeUrl = sanitizeUrl(data.featured.url);
+        if (safeUrl) {
+          const a = document.createElement('a');
+          a.className = 'featured-link';
+          a.href = safeUrl;
+          a.target = '_blank';
+          a.rel = 'noopener noreferrer';
+
+          let thumbSrc = sanitizeUrl(data.featured.thumbnail);
+          if (!thumbSrc) {
+            const ytId = extractYouTubeId(safeUrl);
+            if (ytId) {
+              thumbSrc = `https://i.ytimg.com/vi/${encodeURIComponent(ytId)}/hqdefault.jpg`;
+            }
+          }
+
+          if (thumbSrc) {
+            const img = document.createElement('img');
+            img.className = 'featured-thumb';
+            img.src = thumbSrc;
+            img.alt = data.featured.label || 'Featured video';
+            img.width = 152;
+            img.height = 95;
+            img.fetchPriority = 'high';
+            a.appendChild(img);
+          }
+
+          if (data.featured.label) {
+            const label = document.createElement('span');
+            label.className = 'featured-label';
+            label.textContent = data.featured.label;
+            a.appendChild(label);
+          }
+
+          featuredSlot.appendChild(a);
+        }
+      }
+
+      const platformList = document.getElementById('platform-list');
+      platformList.replaceChildren();
+      if (Array.isArray(data.links)) {
+        for (const item of data.links) {
+          const el = createPlatformElement(item);
+          if (el) platformList.appendChild(el);
+        }
+      }
+
+      const socialList = document.getElementById('social-list');
+      socialList.replaceChildren();
+      if (Array.isArray(data.socials)) {
+        for (const item of data.socials) {
+          const el = createSocialElement(item);
+          if (el) socialList.appendChild(el);
+        }
+      }
+
+      if (data.copyright) {
+        const footer = document.getElementById('site-footer');
+        const p = document.createElement('p');
+        p.textContent = data.copyright;
+        footer.replaceChildren(p);
+      }
+    }
+
+    async function init() {
+      try {
+        const response = await fetch('./links.json', { cache: 'no-cache' });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
+        renderData(data);
+      } catch {
+        const platformList = document.getElementById('platform-list');
+        const note = document.createElement('li');
+        note.className = 'status-note';
+        note.textContent = 'Unable to load links.json. Please check JSON formatting.';
+        platformList.replaceChildren(note);
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>
